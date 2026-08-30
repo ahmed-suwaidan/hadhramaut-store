@@ -1,0 +1,735 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر حضرموت الذكي | المنظومة التجارية المتكاملة</title>
+
+    <!-- إعدادات معاينة الواتساب ومواقع التواصل -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="متجر حضرموت الذكي">
+    <meta property="og:title" content="👑 متجر حضرموت الذكي | بوابتك للتسوق والتوريد المباشر">
+    <meta property="og:description" content="تصفح واطلب أفخر السلع الحصرية من كبرى محلات حضرموت بضغطة زر - خيارات دفع متعددة وتوصيل فوري.">
+    <meta property="og:url" content="https://hadhramaut-store.duckdns.org/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=1200&h=630&fit=crop">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="theme-color" content="#d4af37">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --bg-main: #0c0e12;
+            --bg-card: #16191f;
+            --bg-card-hover: #1f242c;
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #aa841e;
+            --text-main: #f8f9fa;
+            --text-muted: #a0a6b1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        .navbar-custom {
+            background-color: #111317;
+            border-bottom: 2px solid var(--gold-primary);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .navbar-brand {
+            color: var(--gold-primary) !important;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            font-size: 1.3rem;
+            text-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 14px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            background: var(--bg-card-hover);
+            border-color: var(--gold-primary);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
+        }
+
+        .product-img-wrapper {
+            height: 210px;
+            overflow: hidden;
+            background-color: #000;
+            position: relative;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.06);
+        }
+
+        .badge-shop {
+            background-color: rgba(212, 175, 55, 0.15);
+            color: var(--gold-light);
+            border: 1px solid var(--border-gold);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .price-tag {
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-shadow: 0 1px 5px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af37 0%, #aa841e 100%);
+            color: #000;
+            font-weight: 700;
+            border: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 100%);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline-gold {
+            background: transparent;
+            color: var(--gold-primary);
+            border: 1px solid var(--gold-primary);
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .btn-outline-gold:hover {
+            background: var(--gold-primary);
+            color: #000;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            font-size: 0.75rem;
+            background-color: #e63946 !important;
+        }
+
+        .modal-content {
+            background-color: #16191f;
+            color: var(--text-main);
+            border: 1px solid var(--gold-primary);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        .modal-header {
+            border-bottom: 1px solid var(--border-gold);
+            background-color: #111317;
+        }
+
+        .modal-title {
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .form-control, .form-select {
+            background-color: #0f1115;
+            border: 1px solid #2e3440;
+            color: #fff;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #14171d;
+            border-color: var(--gold-primary);
+            color: #fff;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+        }
+
+        .table-dark-custom {
+            --bs-table-bg: transparent;
+            --bs-table-color: #fff;
+            border-color: #2e3440;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1ebd5a;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .nav-pills .nav-link {
+            color: #fff;
+            border: 1px solid #2e3440;
+        }
+
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, #d4af37 0%, #aa841e 100%);
+            color: #000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- القائمة العلوية -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <i class="fa-solid fa-gem ms-2 text-warning"></i> متجر حضرموت الذكي
+            </a>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-gold btn-sm position-relative px-3" data-bs-toggle="modal" data-bs-target="#cartModal">
+                    <i class="fa-solid fa-cart-shopping ms-1"></i> السلة
+                    <span id="cartCount" class="badge rounded-pill cart-badge">0</span>
+                </button>
+                <button class="btn btn-outline-gold btn-sm px-3" data-bs-toggle="modal" data-bs-target="#merchantAuthModal">
+                    <i class="fa-solid fa-user-tie ms-1"></i> بوابة التجار
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- المحتوى الرئيسي للمتجر -->
+    <div class="container my-4">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+            <h4 class="fw-bold mb-0 text-white">
+                <i class="fa-solid fa-crown ms-2" style="color: var(--gold-primary);"></i> أحدث المعروضات الحصرية
+            </h4>
+            <div style="min-width: 260px;">
+                <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="🔍 ابحث عن صنف أو اسم محل أو قسم..." oninput="filterProducts()">
+            </div>
+        </div>
+
+        <div id="productsGrid" class="row g-3">
+            <div class="text-center py-5">
+                <div class="spinner-border text-warning" role="status"></div>
+                <p class="mt-2 text-muted">جاري تحميل المنتجات المعروضة...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة سلة المشتريات وتأكيد الطلب -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fa-solid fa-cart-shopping ms-2"></i> سلة المشتريات الفاخرة</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItemsList" class="table-responsive mb-3">
+                        <table class="table table-dark-custom table-sm align-middle">
+                            <thead style="border-bottom: 2px solid var(--gold-primary);">
+                                <tr>
+                                    <th>المنتج</th>
+                                    <th>المحل</th>
+                                    <th>السعر</th>
+                                    <th class="text-center">الكمية</th>
+                                    <th>الإجمالي</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cartTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <div id="emptyCartMessage" class="text-center py-5 d-none">
+                        <i class="fa-solid fa-basket-shopping fa-3x mb-3" style="color: var(--gold-primary); opacity: 0.5;"></i>
+                        <p class="text-muted">سلة المشتريات فارغة حالياً</p>
+                    </div>
+
+                    <div id="orderFormSection">
+                        <hr style="border-color: var(--border-gold);">
+                        <h6 class="fw-bold mb-3" style="color: var(--gold-primary);">
+                            <i class="fa-solid fa-address-card ms-1"></i> بيانات استلام وتأكيد الطلب
+                        </h6>
+                        <form id="checkoutForm" onsubmit="submitOrder(event)">
+                            <div class="row g-2">
+                                <div class="col-md-6">
+                                    <label class="form-label small text-muted">الاسم الثلاثي للعميل</label>
+                                    <input type="text" id="custName" class="form-control form-control-sm" required placeholder="مثال: أحمد سالم سويدان">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small text-muted">رقم الهاتف (الواتساب)</label>
+                                    <input type="tel" id="custPhone" class="form-control form-control-sm" required placeholder="مثال: 770000000">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small text-muted">المدينة / عنوان التوصيل</label>
+                                    <input type="text" id="custCity" class="form-control form-control-sm" required placeholder="مثال: تريم - السوق العام">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small text-muted">طريقة الدفع</label>
+                                    <select id="payMethod" class="form-select form-select-sm" onchange="toggleTransferRef()">
+                                        <option value="الدفع عند الاستلام">الدفع عند الاستلام (يداً بيد)</option>
+                                        <option value="حوالة شبكة العمقي">حوالة عبر شبكة العمقي للصرافة</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 d-none" id="transferRefDiv">
+                                    <label class="form-label small text-muted">رقم السند / الحوالة</label>
+                                    <input type="text" id="transferRef" class="form-control form-control-sm" placeholder="أدخل رقم الحوالة">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small text-muted">كود المسوق (اختياري)</label>
+                                    <input type="text" id="marketerCode" class="form-control form-control-sm" placeholder="مثال: MK10">
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mt-4 pt-3" style="border-top: 1px solid var(--border-gold);">
+                                <div>
+                                    <span class="text-muted small">المبلغ الإجمالي المستحق:</span>
+                                    <h4 class="fw-bold price-tag mb-0" id="cartTotalSum">0 ر.ي</h4>
+                                </div>
+                                <button type="submit" id="btnSubmitOrder" class="btn btn-gold px-4 py-2">
+                                    <i class="fa-solid fa-circle-check ms-1"></i> تأكيد وإرسال الطلب
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة نجاح الطلب مع زر الواتساب والفاتورة الرسمية -->
+    <div class="modal fade" id="orderSuccessModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-4">
+                <div class="mb-3">
+                    <i class="fa-solid fa-circle-check fa-4x" style="color: var(--gold-primary);"></i>
+                </div>
+                <h4 class="fw-bold text-white">تم استلام طلبك بنجاح!</h4>
+                <p class="text-muted small mb-4" id="successOrderInfo">تم تسجيل تفاصيل الطلب وتوجيهه للإدارة لتحضيره وتوصيله فوراً.</p>
+                
+                <div class="d-grid gap-2 mb-3">
+                    <a id="btnWhatsAppConfirm" href="#" target="_blank" class="btn btn-whatsapp py-2">
+                        <i class="fa-brands fa-whatsapp fa-lg ms-2"></i> متابعة الطلب عبر الواتساب
+                    </a>
+                    <a id="btnDownloadInvoice" href="#" target="_blank" class="btn btn-outline-gold py-2">
+                        <i class="fa-solid fa-file-invoice fa-lg ms-2"></i> 📄 عرض وتحميل فاتورة الشراء (PDF)
+                    </a>
+                </div>
+                <button type="button" class="btn btn-dark btn-sm text-muted" data-bs-dismiss="modal" onclick="clearCart()">إغلاق ومتابعة التسوق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تسجيل ودخول التجار -->
+    <div class="modal fade" id="merchantAuthModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fa-solid fa-shop ms-2"></i> بوابة إدارة المحلات</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link active btn-sm" data-bs-toggle="pill" data-bs-target="#loginTab">تسجيل الدخول</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link btn-sm" data-bs-toggle="pill" data-bs-target="#registerTab">تسجيل محل جديد</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <!-- تسجيل دخول -->
+                        <div class="tab-pane fade show active" id="loginTab">
+                            <form onsubmit="handleMerchantLogin(event)">
+                                <div class="mb-2">
+                                    <label class="form-label small text-muted">رقم الهاتف المسجل</label>
+                                    <input type="tel" id="mLoginPhone" class="form-control form-control-sm" required placeholder="771122334">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small text-muted">كلمة المرور</label>
+                                    <input type="password" id="mLoginPass" class="form-control form-control-sm" required placeholder="••••••">
+                                </div>
+                                <button type="submit" id="btnMerchantLogin" class="btn btn-gold btn-sm w-100 py-2">دخول مباشر إلى لوحة المحل</button>
+                            </form>
+                        </div>
+                        <!-- تسجيل جديد -->
+                        <div class="tab-pane fade" id="registerTab">
+                            <form onsubmit="handleMerchantRegister(event)">
+                                <div class="mb-2">
+                                    <label class="form-label small text-muted">اسم المحل التجاري</label>
+                                    <input type="text" id="mRegName" class="form-control form-control-sm" required placeholder="مثال: محل عباد">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small text-muted">رقم الهاتف</label>
+                                    <input type="tel" id="mRegPhone" class="form-control form-control-sm" required placeholder="770000000">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small text-muted">الموقع / العنوان</label>
+                                    <input type="text" id="mRegLocation" class="form-control form-control-sm" required placeholder="تريم - السوق العام">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small text-muted">كلمة المرور</label>
+                                    <input type="password" id="mRegPass" class="form-control form-control-sm" required>
+                                </div>
+                                <button type="submit" id="btnMerchantReg" class="btn btn-gold btn-sm w-100 py-2">إنشاء حساب معتمد والدخول</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let allProducts = [];
+        let cart = [];
+
+        // 1. جلب وعرض المنتجات
+        async function loadProducts() {
+            try {
+                const res = await fetch('/api/products');
+                allProducts = await res.json();
+                renderProducts(allProducts);
+            } catch (err) {
+                document.getElementById('productsGrid').innerHTML = `
+                    <div class="alert alert-danger text-center">فشل تحميل السلع، يرجى إعادة تحديث الصفحة.</div>
+                `;
+            }
+        }
+
+        function renderProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            if (!products || products.length === 0) {
+                grid.innerHTML = `<div class="text-center text-muted py-5 col-12">لا توجد سلع معروضة تطابق البحث.</div>`;
+                return;
+            }
+
+            grid.innerHTML = products.map(p => {
+                const shopTitle = p.shop_name || p.merchant_name || p.category || 'متجر معتمد';
+                const imgSrc = p.image_url || 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=500';
+
+                return `
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="card product-card h-100 shadow-sm">
+                            <div class="product-img-wrapper">
+                                <img src="${imgSrc}" class="product-img" alt="${p.name || 'منتج'}" onerror="this.src='https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=500'">
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-between p-3">
+                                <div>
+                                    <span class="badge badge-shop mb-2"><i class="fa-solid fa-shop ms-1"></i>${shopTitle}</span>
+                                    <h6 class="card-title fw-bold text-white text-truncate mb-1" title="${p.name || ''}">${p.name || 'منتج'}</h6>
+                                    <div class="price-tag mb-2">${Number(p.price || 0).toLocaleString()} <small style="font-size: 0.8rem;">ر.ي</small></div>
+                                </div>
+                                <button class="btn btn-outline-gold btn-sm w-100 mt-2" onclick="addToCart(${p.id})">
+                                    <i class="fa-solid fa-plus ms-1"></i> إضافة للسلة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 2. البحث الفوري الدقيق
+        function filterProducts() {
+            const query = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+            
+            if (!query) {
+                renderProducts(allProducts);
+                return;
+            }
+
+            const filtered = allProducts.filter(p => {
+                const name = (p.name || '').toLowerCase();
+                const shop = (p.shop_name || p.merchant_name || '').toLowerCase();
+                const cat = (p.category || '').toLowerCase();
+                const desc = (p.description || '').toLowerCase();
+
+                return name.includes(query) || shop.includes(query) || cat.includes(query) || desc.includes(query);
+            });
+
+            renderProducts(filtered);
+        }
+
+        // 3. إدارة سلة المشتريات
+        function addToCart(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name || 'منتج',
+                    price: Number(product.price || 0),
+                    quantity: 1,
+                    shop_name: product.shop_name || product.merchant_name || 'متجر معتمد',
+                    image_url: product.image_url || ''
+                });
+            }
+            updateCartUI();
+        }
+
+        function updateQuantity(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCartUI();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').innerText = count;
+
+            const tableBody = document.getElementById('cartTableBody');
+            const emptyMsg = document.getElementById('emptyCartMessage');
+            const formSection = document.getElementById('orderFormSection');
+
+            if (cart.length === 0) {
+                tableBody.innerHTML = '';
+                emptyMsg.classList.remove('d-none');
+                formSection.classList.add('d-none');
+                document.getElementById('cartTotalSum').innerText = "0 ر.ي";
+                return;
+            }
+
+            emptyMsg.classList.add('d-none');
+            formSection.classList.remove('d-none');
+
+            let total = 0;
+            tableBody.innerHTML = cart.map(item => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                return `
+                    <tr>
+                        <td><small class="fw-bold text-white">${item.name}</small></td>
+                        <td><small class="text-muted">${item.shop_name}</small></td>
+                        <td><small class="text-warning">${item.price.toLocaleString()}</small></td>
+                        <td class="text-center">
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-dark border-secondary py-0 px-2 text-white" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span class="px-2 py-0 align-self-center text-white">${item.quantity}</span>
+                                <button class="btn btn-dark border-secondary py-0 px-2 text-white" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </td>
+                        <td><small class="fw-bold" style="color: var(--gold-primary);">${subtotal.toLocaleString()} ر.ي</small></td>
+                        <td>
+                            <button class="btn btn-link text-danger btn-sm p-0" onclick="removeFromCart(${item.id})">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            document.getElementById('cartTotalSum').innerText = `${total.toLocaleString()} ر.ي`;
+        }
+
+        function toggleTransferRef() {
+            const method = document.getElementById('payMethod').value;
+            const refDiv = document.getElementById('transferRefDiv');
+            if (method.includes("العمقي")) {
+                refDiv.classList.remove('d-none');
+            } else {
+                refDiv.classList.add('d-none');
+            }
+        }
+
+        // 4. إرسال الطلب وتنسيق رسالة الواتساب التفصيلية
+        async function submitOrder(e) {
+            e.preventDefault();
+            if (cart.length === 0) return;
+
+            const btn = document.getElementById('btnSubmitOrder');
+            btn.disabled = true;
+            btn.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> جاري المعالجة...`;
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const customerName = document.getElementById('custName').value.trim();
+            const customerPhone = document.getElementById('custPhone').value.trim();
+            const customerCity = document.getElementById('custCity').value.trim();
+            const payMethod = document.getElementById('payMethod').value;
+            const marketerCode = document.getElementById('marketerCode').value.trim() || 'مباشر';
+
+            const payload = {
+                customer_name: customerName,
+                phone: customerPhone,
+                address: customerCity,
+                items: cart,
+                total_price: total,
+                payment_method: payMethod,
+                marketer_code: marketerCode
+            };
+
+            try {
+                const res = await fetch('/api/orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await res.json();
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fa-solid fa-circle-check ms-1"></i> تأكيد وإرسال الطلب`;
+
+                if (res.ok) {
+                    bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
+                    
+                    // بناء نص الرسالة التفصيلية الفاخرة للواتساب مباشرة
+                    let itemsFormatted = cart.map((it, idx) => {
+                        let text = `${idx + 1}. *${it.name}* (الكمية: ${it.quantity}) | السعر: ${Number(it.price).toLocaleString()} ر.ي\n🏬 المحل: ${it.shop_name}`;
+                        if (it.image_url) {
+                            text += `\n🖼️ الصورة: ${it.image_url}`;
+                        }
+                        return text;
+                    }).join('\n\n');
+
+                    const orderId = data.order_id || '7';
+                    const waText = 
+`🛒 *طلب شراء جديد من متجر حضرموت (سلة تسوق)*
+━━━━━━━━━━━━━━━━━━━━
+🏷️ *رقم الطلب:* #${orderId}
+👤 *المشتري:* ${customerName}
+📱 *الهاتف:* ${customerPhone}
+📍 *موقع الاستلام:* ${customerCity}
+💳 *طريقة الدفع:* ${payMethod}
+🏷️ *كود المسوق:* ${marketerCode}
+━━━━━━━━━━━━━━━━━━━━
+📦 *قائمة السلع المطلوبة:*
+
+${itemsFormatted}
+
+━━━━━━━━━━━━━━━━━━━━
+💰 *الإجمالي المستحق:* ${total.toLocaleString()} ريال يمني
+يرجى تأكيد تجهيز الشحنة وتوجيه المندوب. 🚚`;
+
+                    // ربط زر الواتساب بالرسالة الكاملة ورقمك
+                    document.getElementById('btnWhatsAppConfirm').href = `https://wa.me/967783604947?text=${encodeURIComponent(waText)}`;
+                    
+                    // ربط زر الفاتورة الرسمية (PDF / طباعة)
+                    document.getElementById('btnDownloadInvoice').href = `/api/orders/${orderId}/invoice`;
+
+                    const successModal = new bootstrap.Modal(document.getElementById('orderSuccessModal'));
+                    successModal.show();
+                } else {
+                    alert(data.detail || "تعذر تسجيل الطلب، يرجى التأكد من البيانات.");
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fa-solid fa-circle-check ms-1"></i> تأكيد وإرسال الطلب`;
+                alert("حدث خطأ أثناء الاتصال بالخادم.");
+            }
+        }
+
+        // 5. تعاملات التاجر
+        async function handleMerchantLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnMerchantLogin');
+            const phone = document.getElementById('mLoginPhone').value.trim();
+            const pass = document.getElementById('mLoginPass').value.trim();
+
+            btn.disabled = true;
+            btn.innerText = "جاري الدخول...";
+
+            try {
+                const res = await fetch('/api/merchants/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phone: phone, password: pass })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    localStorage.setItem('hadhramaut_m_phone', phone);
+                    localStorage.setItem('hadhramaut_m_pass', pass);
+                    window.location.href = '/merchant';
+                } else {
+                    btn.disabled = false;
+                    btn.innerText = "دخول مباشر إلى لوحة المحل";
+                    alert(data.detail || "بيانات الدخول غير صحيحة");
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btn.innerText = "دخول مباشر إلى لوحة المحل";
+                alert("تعذر الاتصال بالسيرفر.");
+            }
+        }
+
+        async function handleMerchantRegister(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnMerchantReg');
+            const phone = document.getElementById('mRegPhone').value.trim();
+            const pass = document.getElementById('mRegPass').value.trim();
+            const payload = {
+                shop_name: document.getElementById('mRegName').value.trim(),
+                phone: phone,
+                location: document.getElementById('mRegLocation').value.trim(),
+                password: pass
+            };
+
+            btn.disabled = true;
+            btn.innerText = "جاري إنشاء الحساب...";
+
+            try {
+                const res = await fetch('/api/merchants/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    localStorage.setItem('hadhramaut_m_phone', phone);
+                    localStorage.setItem('hadhramaut_m_pass', pass);
+                    window.location.href = '/merchant';
+                } else {
+                    btn.disabled = false;
+                    btn.innerText = "إنشاء حساب معتمد والدخول";
+                    alert(data.detail || "فشل تسجيل المحل");
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btn.innerText = "إنشاء حساب معتمد والدخول";
+                alert("خطأ في الاتصال بالسيرفر.");
+            }
+        }
+
+        loadProducts();
+    </script>
+</body>
+</html>
