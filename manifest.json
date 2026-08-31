@@ -1,0 +1,21 @@
+{
+  "name": "متجر حضرموت الذكي",
+  "short_name": "متجر حضرموت",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0e12",
+  "theme_color": "#d4af37",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
